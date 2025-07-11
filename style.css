@@ -1,0 +1,243 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* 游戏容器 */
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* 游戏标题区域 */
+.game-header h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+.score-display, .status-display {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.score-display {
+    color: #28a745;
+}
+
+.status-display {
+    color: #6c757d;
+}
+
+/* 游戏区域 */
+.game-area {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+#gameCanvas {
+    border: 3px solid #333;
+    border-radius: 10px;
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    height: auto;
+}
+
+/* 游戏控制区域 */
+.game-controls {
+    margin-top: 20px;
+}
+
+.instructions {
+    margin-bottom: 20px;
+}
+
+.instructions p {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 1.1em;
+}
+
+.key-hints {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.key-hints span {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #e9ecef;
+    border: 2px solid #ced4da;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #495057;
+    min-width: 40px;
+}
+
+/* 按钮样式 */
+.start-button, .restart-button, .play-again-button {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.start-button:hover, .restart-button:hover, .play-again-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+}
+
+.restart-button {
+    background: linear-gradient(45deg, #ffc107, #fd7e14);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.restart-button:hover {
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+}
+
+/* 游戏结束模态框 */
+.game-over-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    width: 90%;
+}
+
+.modal-content h2 {
+    color: #dc3545;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.modal-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+#finalScore {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .game-header h1 {
+        font-size: 2em;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .key-hints {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .key-hints span {
+        padding: 6px 10px;
+        min-width: 35px;
+    }
+    
+    .start-button, .restart-button, .play-again-button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 400px) {
+    .game-header h1 {
+        font-size: 1.8em;
+    }
+    
+    #gameCanvas {
+        max-width: 300px;
+    }
+    
+    .modal-content {
+        padding: 30px 20px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* 游戏状态样式 */
+.status-playing {
+    color: #28a745 !important;
+}
+
+.status-gameover {
+    color: #dc3545 !important;
+}
+
+.status-ready {
+    color: #6c757d !important;
+}
